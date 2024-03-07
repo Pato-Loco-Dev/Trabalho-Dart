@@ -2,11 +2,7 @@ import 'dart:io';
 
 List<Map<String, dynamic>> listaDeClientes = [];
 
-void main() {
-  inicializar();
-}
-
-void inicializar() {
+void inicializarClientes() {
   bool rodando = true;
   while (rodando) {
     print("----------Aba Clientes----------");
