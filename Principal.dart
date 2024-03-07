@@ -1,4 +1,6 @@
 import 'dart:io';
+import 'Clientes.dart';
+import 'Relatorios.dart'; // Importe o arquivo 02
 
 List<Map<String, dynamic>> listaDeClientes = [];
 
@@ -21,24 +23,30 @@ void inicializar() {
     int funcaoEscolhida = int.parse(stdin.readLineSync()!);
 
     if (funcaoEscolhida < 1 || funcaoEscolhida > 6) {
-      print("********************Comando inválido, escolha um número entre 1 e 5!********************");
+      print("********************Comando inválido, escolha um número entre 1 e 6!********************");
     } else {
       switch (funcaoEscolhida) {
         case 1:
           print("Você escolheu: ÁREA DE CLIENTES");
-          //Chamar metodos
+          // Chame a função inicializarClientes() do arquivo 02
+          inicializarClientes();
+          break; // Não se esqueça de adicionar break após cada case
         case 2:
-          print("Você escolheu: ÁREA DE VENDAS");
+          print("Você escolheu: ÁREA DE PRODUTOS");
           //Chamar metodos
+          break;
         case 3:
           print("Você escolheu: ÁREA DE VEÍCULOS EM ESTOQUE");
           //Chamar metodos
+          break;
         case 4:
           print("Você escolheu: ÁREA DE VENDAS");
           //Chamar metodos
+          break;
         case 5:
           print("Você escolheu: ÁREA DE RELATÓRIOS.");
-          //Chamar metodos
+          inicializarRelatorios();
+          break;
         case 6: 
           print("Saindo");
           rodando=false;
