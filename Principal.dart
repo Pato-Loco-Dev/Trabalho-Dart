@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'Clientes.dart';
 import 'Relatorios.dart'; // Importe o arquivo 02
+import 'Carros.dart';
 
 List<Map<String, dynamic>> listaDeClientes = [];
 
@@ -33,7 +34,7 @@ void inicializar() {
           break; // Não se esqueça de adicionar break após cada case
         case 2:
           print("Você escolheu: ÁREA DE PRODUTOS");
-          //Chamar metodos
+          mainCarros();
           break;
         case 3:
           print("Você escolheu: ÁREA DE VEÍCULOS EM ESTOQUE");
