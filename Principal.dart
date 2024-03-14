@@ -1,17 +1,20 @@
 import 'dart:io';
 import 'Clientes.dart';
-import 'Relatorios.dart'; // Importe o arquivo 02
+import 'ClientesManager.dart';
+import 'Relatorios.dart'; 
 import 'Carros.dart';
-
-List<Map<String, dynamic>> listaDeClientes = [];
+import 'Vendas.dart';
 
 void main() {
-  inicializar();
+    inicializar();
 }
 
 void inicializar() {
-  bool rodando = true;
-  while (rodando) {
+  limparTela();
+  ClientesManager.StopInicializar = true;
+  while (ClientesManager.StopInicializar) {
+
+    
     print("----------BEM VINDO!----------");
     print("Digite o número da função que deseja realizar:");
     print("1-Acessar área CLIENTES");
@@ -42,7 +45,7 @@ void inicializar() {
           break;
         case 4:
           print("Você escolheu: ÁREA DE VENDAS");
-          //Chamar metodos
+          InicializarVendas();
           break;
         case 5:
           print("Você escolheu: ÁREA DE RELATÓRIOS.");
@@ -50,9 +53,13 @@ void inicializar() {
           break;
         case 6: 
           print("Saindo");
-          rodando=false;
+          ClientesManager.StopInicializar=false;
           break;
       }
     }
   }
+}
+
+limparTela() {
+  print('\x1B[2J\x1b[0;0H');
 }

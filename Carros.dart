@@ -1,8 +1,10 @@
 import 'dart:io';
+import 'Principal.dart';
 
 List<Map<String, dynamic>> listaCarros = [];
 
 void mainCarros() {
+  limparTela();
   bool rodando = true;
   while (rodando) {
     print("----------Gerenciamento de Veiculos----------");
@@ -19,22 +21,27 @@ void mainCarros() {
     } else {
       switch (funcaoEscolhida) {
         case 1:
+          limparTela();
           print("Você escolheu: Cadastrar um veiculo.");
           cadastrar();
           break;
         case 2:
+          limparTela();
           print("Você escolheu: Atualizar um veiculo.");
           atualizar();
           break;
         case 3:
+          limparTela();
           print("Você escolheu: Listar todos os veiculos.");
           listarTudo();
           break;
         case 4:
+          limparTela();
           print("Você escolheu: Deletar um veiculo.");
           deletar();
           break;
         case 5:
+          limparTela();
           print("Saindo.");
           rodando = false;
           break;

@@ -1,5 +1,6 @@
 class ClientesManager {
   static List<Map<String, dynamic>> listaDeClientes = [];
+  static late bool StopInicializar;
 
   static void cadastrar(Map<String, dynamic> cadastro) {
     listaDeClientes.add(cadastro);
@@ -16,4 +17,6 @@ class ClientesManager {
   static List<Map<String, dynamic>> listarTodos() {
     return List<Map<String, dynamic>>.from(listaDeClientes);
   }
+  
 }
+

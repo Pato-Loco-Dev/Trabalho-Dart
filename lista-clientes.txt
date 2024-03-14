@@ -1,0 +1,6 @@
+Nome Completo: 1
+CPF: 1
+Data de Nascimento: 1
+Endereço: 1
+Telefone: 1
+--------------------
