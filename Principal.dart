@@ -1,17 +1,22 @@
 import 'dart:io';
 import 'Clientes.dart';
-import 'Relatorios.dart'; // Importe o arquivo 02
+import 'Relatorios.dart'; 
+import 'ClientesManager.dart';
 import 'Carros.dart';
 
+
 List<Map<String, dynamic>> listaDeClientes = [];
+late bool rodandoInicializar;
 
 void main() {
-  inicializar();
+    inicializar();
 }
 
 void inicializar() {
-  bool rodando = true;
-  while (rodando) {
+  rodandoInicializar = true;
+  while (rodandoInicializar) {
+
+    
     print("----------BEM VINDO!----------");
     print("Digite o número da função que deseja realizar:");
     print("1-Acessar área CLIENTES");
@@ -50,7 +55,7 @@ void inicializar() {
           break;
         case 6: 
           print("Saindo");
-          rodando=false;
+          rodandoInicializar=false;
           break;
       }
     }

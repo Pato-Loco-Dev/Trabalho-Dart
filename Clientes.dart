@@ -28,7 +28,7 @@ void inicializarClientes() {
           break;
         case 3:
           print("Você escolheu: Listar todos os clientes.");
-          listarTudo();
+          listarTodos();
           break;
         case 4:
           print("Você escolheu: Deletar um registro.");
@@ -100,7 +100,7 @@ void atualizar() {
   print("Cliente atualizado com sucesso.");
 }
 
-void listarTudo() {
+void listarTodos() {
   if (listaDeClientes.isEmpty) {
     print("Não há clientes cadastrados.");
     return;
