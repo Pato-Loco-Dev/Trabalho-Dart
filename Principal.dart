@@ -45,7 +45,7 @@ void inicializar() {
           break;
         case 4:
           print("Você escolheu: ÁREA DE VENDAS");
-          InicializarVendas();
+          mainVenda();
           break;
         case 5:
           print("Você escolheu: ÁREA DE RELATÓRIOS.");

@@ -2,6 +2,7 @@ import 'dart:io';
 import 'Clientes.dart';
 import 'ClientesManager.dart'; 
 import 'Principal.dart';
+import 'Vendas.dart';
 
 void main() {
   inicializarRelatorios();
@@ -60,7 +61,7 @@ Future<void> inicializarRelatorios() async {
           var sink = file.openWrite();
 
           // Escreve cada cliente no arquivo
-          for (var venda in listaDeVendas) { // Usar listaDeClientes diretamente
+          for (var venda in listaVendas) { // Usar listaDeClientes diretamente
             sink.writeln("Nome Completo: ${venda['nomeCompleto']}");
 
 
@@ -72,12 +73,13 @@ Future<void> inicializarRelatorios() async {
           ClientesManager.StopInicializar = false;          
           
           break;
-        case 3:
+        /*case 3:
           limparTela();
           print("Saindo.");
           rodando = false;
-          break;
+          break;*/
       }
     }
   }
+}
 }
