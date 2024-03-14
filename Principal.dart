@@ -1,20 +1,21 @@
 import 'dart:io';
 import 'Clientes.dart';
-import 'Relatorios.dart'; 
 import 'ClientesManager.dart';
+import 'Relatorios.dart'; 
 import 'Carros.dart';
+import 'Vendas.dart';
 
 
 List<Map<String, dynamic>> listaDeClientes = [];
-late bool rodandoInicializar;
+
 
 void main() {
     inicializar();
 }
 
 void inicializar() {
-  rodandoInicializar = true;
-  while (rodandoInicializar) {
+  ClientesManager.StopInicializar = true;
+  while (ClientesManager.StopInicializar) {
 
     
     print("----------BEM VINDO!----------");
@@ -47,7 +48,7 @@ void inicializar() {
           break;
         case 4:
           print("Você escolheu: ÁREA DE VENDAS");
-          //Chamar metodos
+          InicializarVendas();
           break;
         case 5:
           print("Você escolheu: ÁREA DE RELATÓRIOS.");
@@ -55,7 +56,7 @@ void inicializar() {
           break;
         case 6: 
           print("Saindo");
-          rodandoInicializar=false;
+          ClientesManager.StopInicializar=false;
           break;
       }
     }
