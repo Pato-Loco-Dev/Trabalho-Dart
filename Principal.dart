@@ -5,15 +5,12 @@ import 'Relatorios.dart';
 import 'Carros.dart';
 import 'Vendas.dart';
 
-
-List<Map<String, dynamic>> listaDeClientes = [];
-
-
 void main() {
     inicializar();
 }
 
 void inicializar() {
+  limparTela();
   ClientesManager.StopInicializar = true;
   while (ClientesManager.StopInicializar) {
 
@@ -61,4 +58,8 @@ void inicializar() {
       }
     }
   }
+}
+
+limparTela() {
+  print('\x1B[2J\x1b[0;0H');
 }

@@ -1,12 +1,14 @@
 import 'dart:io';
 import 'Clientes.dart';
-import 'ClientesManager.dart'; // Importar o arquivo onde a lista de clientes está definida
+import 'ClientesManager.dart'; 
+import 'Principal.dart';
 
 void main() {
   inicializarRelatorios();
 }
 
 Future<void> inicializarRelatorios() async {
+  limparTela();
   print("ÁREA DE RELATÓRIOS, ESCOLHA O QUE VOCÊ DESEJA:");
   print("1- Relatório de clientes cadastrados.");
   print("2- Relatório de total de vendas.");
@@ -21,6 +23,7 @@ Future<void> inicializarRelatorios() async {
     } else {
       switch (funcaoEscolhida) {
         case 1:
+          limparTela();
           print("Você escolheu: Relatório de clientes cadastrados.");
           final filename = 'lista-clientes.txt';
           var file = File(filename);
@@ -46,11 +49,31 @@ Future<void> inicializarRelatorios() async {
           ClientesManager.StopInicializar = false;          
           
           break;
+
         case 2:
-          print("Você escolheu: Relatório de total de vendas.");
-          // Chamar métodos
+          limparTela();
+          print("Você escolheu: Relatório de vendas.");
+          final filename = 'lista-vendas.txt';
+          var file = File(filename);
+
+          // Abre o arquivo para escrita
+          var sink = file.openWrite();
+
+          // Escreve cada cliente no arquivo
+          for (var venda in listaDeVendas) { // Usar listaDeClientes diretamente
+            sink.writeln("Nome Completo: ${venda['nomeCompleto']}");
+
+
+          // Fecha o arquivo após escrever todos os clientes
+          
+          sink.close();
+          print("Relatório de clientes cadastrados salvo com sucesso.");
+          rodando = false;
+          ClientesManager.StopInicializar = false;          
+          
           break;
         case 3:
+          limparTela();
           print("Saindo.");
           rodando = false;
           break;

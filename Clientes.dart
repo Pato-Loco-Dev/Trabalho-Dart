@@ -1,8 +1,10 @@
 import 'dart:io';
+import 'Principal.dart';
 
 List<Map<String, dynamic>> listaDeClientes = [];
 
 void inicializarClientes() {
+  limparTela();
   bool rodando = true;
   while (rodando) {
     print("----------Aba Clientes----------");
@@ -19,22 +21,27 @@ void inicializarClientes() {
     } else {
       switch (funcaoEscolhida) {
         case 1:
+          limparTela();
           print("Você escolheu: Cadastrar um registro.");
           cadastrar();
           break;
         case 2:
-          print("Você escolheu: Atualizar um registro.");
+          limparTela(); 
+          print("Você escolheu: Atualizar um registro.");         
           atualizar();
           break;
         case 3:
+          limparTela();        
           print("Você escolheu: Listar todos os clientes.");
           listarTodos();
           break;
         case 4:
+          limparTela();
           print("Você escolheu: Deletar um registro.");
           deletar();
           break;
         case 5:
+          limparTela();
           print("Saindo.");
           rodando = false;
           break;
