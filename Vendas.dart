@@ -7,7 +7,6 @@ List<Map<String, dynamic>> listaVendas = [];
 
 mainVenda(){    
 
-    bool rodando = true;
 
     print("----------Controle de Vendas----------");
     print("Digite o número da função que deseja realizar:");
@@ -26,7 +25,6 @@ mainVenda(){
           break;
         case 2:
           print("Saindo.");
-          rodando = false;
           break;
       }
     }
@@ -34,7 +32,9 @@ mainVenda(){
 }
 
 novaVenda() {
+
   Map<String, dynamic> venda = {};
+  
   print('\x1B[2J\x1B[0;0H');
   print('\x1B[2J\x1B[0;0H');
   print('--------------------------');
@@ -52,16 +52,16 @@ novaVenda() {
     print("Valor: ${listaCarros[i]['valor']}");
     print("--------------------");
   }
-  int veiculoSelec = int.parse(stdin.readLineSync()!);
+  
   }
   if (listaDeClientes.isEmpty) {
     print("Desculpe, não há clientes cadastrados.");
     return;
   }
-
+  int veiculoSelec = int.parse(stdin.readLineSync()!);
   print("Selecione o cliente:");
   for (int i = 0; i < listaDeClientes.length; i++) {
-    print("Cliente ${i + 1}:");
+    print("Cliente ${i}:");
     print("Nome Completo: ${listaDeClientes[i]['nomeCompleto']}");
     print("CPF: ${listaDeClientes[i]['cpf']}");
     print("Data de Nascimento: ${listaDeClientes[i]['dataNascimento']}");
@@ -69,22 +69,45 @@ novaVenda() {
     print("Telefone: ${listaDeClientes[i]['telefone']}");
     print("--------------------");
   }
+
   int clienteSelec = int.parse(stdin.readLineSync()!);
-
-  print('Digite o modelo: ');
-  venda['modelo'] = listaCarros;
-
-  print('Digite o ano: ');
-  venda['ano'] = stdin.readLineSync();
-
-  print('Digite a litragem: ');
-  venda['litragem'] = stdin.readLineSync();
-
-  print('Digite a versão: ');
-  venda['versao'] = stdin.readLineSync();
-
-  print('Digite o valor: ');
-  venda['valor'] = stdin.readLineSync();
+  venda['modelo'] = listaCarros[veiculoSelec]['modelo'];
+  venda['ano'] = listaCarros[veiculoSelec]['ano'];
+  venda['litragem'] = listaCarros[veiculoSelec]['litragem'];
+  venda['versao'] = listaCarros[veiculoSelec]['versao'];
+  venda['valor'] = listaCarros[veiculoSelec]['valor'];
+  venda['nomeCompleto'] = listaDeClientes[clienteSelec]['nomeCompleto'];
+  venda['cpf'] = listaDeClientes[clienteSelec]['cpf'];
+  venda['dataNascimento'] = listaDeClientes[clienteSelec]['dataNascimento'];
+  venda['endereco'] = listaDeClientes[clienteSelec]['endereco'];
+  venda['telefone'] = listaDeClientes[clienteSelec]['telefone'];
 
   listaVendas.add(venda);
+  listaCarros.remove(veiculoSelec);
+  listaDeClientes.remove(clienteSelec);
+
+  for (int i = 0; i < listaVendas.length; i++) {
+    print("--------------------Venda ${i + 1} --------------------");
+    print("Modelo: ${listaVendas[i]['modelo']}");
+    print("Ano: ${listaVendas[i]['ano']}");
+    print("Litragem: ${listaVendas[i]['litragem']}");
+    print("Versao: ${listaVendas[i]['versao']}");
+    print("Nome Completo: ${listaVendas[i]['nomeCompleto']}");
+    print("CPF: ${listaVendas[i]['cpf']}");
+    print("Data Nascimento: ${listaVendas[i]['dataNascimento']}");
+    print("Enderço: ${listaVendas[i]['endereco']}");
+    print("Telefone: ${listaVendas[i]['telefone']}");
+    print("--------------------------------------------------------");
+}
+
+print('Deseja realizar mais uma venda?\n1-Sim\n2-Não');
+int? choiceVenda = int.parse(stdin.readLineSync()!);
+
+if(choiceVenda == 1) {
+  mainVenda();
+} else {
+  return;
+}
+
+
 }
