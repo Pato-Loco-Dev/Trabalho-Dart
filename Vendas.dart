@@ -12,15 +12,12 @@ mainVenda(){
     print("----------Controle de Vendas----------");
     print("Digite o número da função que deseja realizar:");
     print("1-Realizar uma venda");
-    print("2-Atualizar uma venda");
-    print("3-Listar todos as vendas");
-    print("4-Deletar uma venda");
-    print("5-Sair.");
+    print("2-Sair.");
 
     int funcaoEscolhida = int.parse(stdin.readLineSync()!);
 
-    if (funcaoEscolhida < 1 || funcaoEscolhida > 5) {
-      print("********************Comando inválido, escolha um número entre 1 e 5!********************");
+    if (funcaoEscolhida < 1 || funcaoEscolhida > 2) {
+      print("********************Comando inválido, escolha entre o número 1 ou 2!********************");
     } else {
       switch (funcaoEscolhida) {
         case 1:
@@ -28,18 +25,6 @@ mainVenda(){
           novaVenda();
           break;
         case 2:
-          print("Você escolheu: Atualizar um veiculo.");
-          
-          break;
-        case 3:
-          print("Você escolheu: Listar todos os veiculos.");
-          
-          break;
-        case 4:
-          print("Você escolheu: Deletar um veiculo.");
-          
-          break;
-        case 5:
           print("Saindo.");
           rodando = false;
           break;
@@ -54,7 +39,7 @@ novaVenda() {
   print('\x1B[2J\x1B[0;0H');
   print('--------------------------');
   if (listaCarros.isEmpty) {
-    print("Não há veiculos cadastrados.");
+    print("Desculpe, não há veiculos cadastrados.");
     return;
   }else {
     print('Selecione o veiculo:');
