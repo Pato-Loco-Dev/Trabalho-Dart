@@ -52,13 +52,14 @@ novaVenda() {
     print("Valor: ${listaCarros[i]['valor']}");
     print("--------------------");
   }
+  int veiculoSelec = int.parse(stdin.readLineSync()!);
   }
   if (listaDeClientes.isEmpty) {
-    print("Não há clientes cadastrados.");
+    print("Desculpe, não há clientes cadastrados.");
     return;
   }
 
-  print("Clientes cadastrados:");
+  print("Selecione o cliente:");
   for (int i = 0; i < listaDeClientes.length; i++) {
     print("Cliente ${i + 1}:");
     print("Nome Completo: ${listaDeClientes[i]['nomeCompleto']}");
@@ -68,9 +69,10 @@ novaVenda() {
     print("Telefone: ${listaDeClientes[i]['telefone']}");
     print("--------------------");
   }
+  int clienteSelec = int.parse(stdin.readLineSync()!);
 
   print('Digite o modelo: ');
-  venda['modelo'] = stdin.readLineSync();
+  venda['modelo'] = listaCarros;
 
   print('Digite o ano: ');
   venda['ano'] = stdin.readLineSync();
