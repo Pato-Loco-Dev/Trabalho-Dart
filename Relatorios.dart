@@ -3,6 +3,7 @@ import 'Clientes.dart';
 import 'Principal.dart';
 import 'Vendas.dart';
 
+
 void main() {
   inicializarRelatorios();
 }
@@ -10,9 +11,9 @@ void main() {
 void inicializarRelatorios() {
 
 
-  bool rodando = true;
+  bool rodandoRelatorios = true;
 
-  while (rodando) {
+  while (rodandoRelatorios) {
     limparTela();
     print("ÁREA DE RELATÓRIOS, ESCOLHA O QUE VOCÊ DESEJA:");
     print("1- Relatório de clientes cadastrados.");
@@ -25,55 +26,85 @@ void inicializarRelatorios() {
     } else {
       switch (funcaoEscolhida) {
         case 1:
-          relatorioClientes();
-          rodando = false;
+          gravarArquivoClientes();
+          rodandoRelatorios = false;
           break;
         case 2:
-          relatorioVendas();
-          rodando=false;
+          gravarArquivoVendas();
+          rodandoRelatorios=false;
           break;
         case 3:
-          rodando = false;
+          rodandoRelatorios = false;
           break;
       }
     }
   }
 }
 
-void relatorioVendas() async{
-  limparTela();
-  print("Você escolheu: Relatório de vendas.");
-  try {
-    final file = File('lista-vendas.txt');
-    final sink = file.openWrite();
+gravarArquivoClientes() {
+  String nomeArquivo = 'lista-clientes.txt';
+  File caminhoArquivo = File(nomeArquivo);
+  caminhoArquivo.createSync(recursive: true);
 
-    for (var venda in VendasManager.listaVendas) {
-    await file.writeAsString(venda.toString());
-    }
+  late String informacoes = '';
 
-    await sink.close();
-    print('Relatório de vendas gravado com sucesso.');
-  } catch (e) {
-    print('Erro ao gravar relatório de vendas: $e');
-  }
+  ClientesManager.listaDeClientes.forEach((cliente) {
+    String nomeCompleto = cliente['nomeCompleto'];
+    String cpf = cliente['cpf'];
+    String dataNascimento = cliente['dataNascimento'];
+    String endereco = cliente['endereco'];
+    String telefone = cliente['telefone'];
+    int totalClientes = ClientesManager.listaDeClientes.length;
 
+    informacoes += '****************************************\n'
+        '********** LISTA DE CLIENTES **********\n'
+        '****************************************\n'
+        'Nome completo:: $nomeCompleto \n'
+        'CPF:: $cpf \n'
+        'Data Nascimento: $dataNascimento \n'
+        'Endereço: $endereco \n'
+        'Telefone: $telefone \n'
+
+        '****************************************\n'
+        'Total de clientes: $totalClientes \n'
+        '****************************************\n';
+
+    caminhoArquivo.writeAsStringSync(informacoes);
+  });
+  print('Arquivo gerado com sucesso!!!');
 }
 
-void relatorioClientes() async {
-  limparTela();
-  print("Você escolheu: Relatório de clientes cadastrados.");
+gravarArquivoVendas() {
+  String nomeArquivo = 'lista-vendas.txt';
+  File caminhoArquivo = File(nomeArquivo);
+  caminhoArquivo.createSync(recursive: true);
 
-  try {
-    final file = File('lista-clientes.txt');
-    final sink = file.openWrite();
+  late String informacoes = '';
 
-    for (var cliente in ClientesManager.listaDeClientes) {
-    await file.writeAsString(cliente.toString());
-    }
+  VendasManager.listaVendas.forEach((venda) {
+    String nomeCompleto = venda['nomeCompleto'];
+    String cpf = venda['cpf'];
+    String modelo =venda['modelo'];
+    String ano =venda['ano'];
+    String litragem =venda['litragem'];
+    String versao =venda['versao'];
+    int totalvendas = VendasManager.listaVendas.length;
 
-    await sink.close();
-    print('Relatório de clientes gravado com sucesso.');
-  } catch (e) {
-    print('Erro ao gravar relatório de clientes: $e');
-  }
+
+    informacoes += '****************************************\n'
+        '********** LISTA DE VENDAS **********\n'
+        '****************************************\n'
+        'Nome completo:: $nomeCompleto \n'
+        'CPF:: $cpf \n'
+        'Modelo:: $modelo \n'
+        'Ano:: $ano \n'
+        'Litragem:: $litragem \n'
+        'Versão:: $versao \n'
+        '****************************************\n'
+        'Total de clientes: $totalvendas \n'
+        '****************************************\n';
+
+    caminhoArquivo.writeAsStringSync(informacoes);
+  });
+  print('Arquivo gerado com sucesso!!!');
 }

@@ -39,18 +39,18 @@ novaVenda() {
   print('\x1B[2J\x1B[0;0H');
   print('\x1B[2J\x1B[0;0H');
   print('--------------------------');
-  if (listaCarros.isEmpty) {
+  if (CarrosManager.listaCarros.isEmpty) {
     print("Desculpe, não há veiculos cadastrados.");
     return;
   }else {
     print('Selecione o veiculo:');
-  for (int i = 0; i < listaCarros.length; i++) {
+  for (int i = 0; i < CarrosManager.listaCarros.length; i++) {
     print("Carro ${i}:");
-    print("Modelo: ${listaCarros[i]['modelo']}");
-    print("Ano: ${listaCarros[i]['ano']}");
-    print("Litragem: ${listaCarros[i]['litragem']}");
-    print("versao: ${listaCarros[i]['versao']}");
-    print("Valor: ${listaCarros[i]['valor']}");
+    print("Modelo: ${CarrosManager.listaCarros[i]['modelo']}");
+    print("Ano: ${CarrosManager.listaCarros[i]['ano']}");
+    print("Litragem: ${CarrosManager.listaCarros[i]['litragem']}");
+    print("versao: ${CarrosManager.listaCarros[i]['versao']}");
+    print("Valor: ${CarrosManager.listaCarros[i]['valor']}");
     print("--------------------");
   }
   
@@ -72,11 +72,11 @@ novaVenda() {
   }
 
   int clienteSelec = int.parse(stdin.readLineSync()!);
-  venda['modelo'] = listaCarros[veiculoSelec]['modelo'];
-  venda['ano'] = listaCarros[veiculoSelec]['ano'];
-  venda['litragem'] = listaCarros[veiculoSelec]['litragem'];
-  venda['versao'] = listaCarros[veiculoSelec]['versao'];
-  venda['valor'] = listaCarros[veiculoSelec]['valor'];
+  venda['modelo'] = CarrosManager.listaCarros[veiculoSelec]['modelo'];
+  venda['ano'] = CarrosManager.listaCarros[veiculoSelec]['ano'];
+  venda['litragem'] = CarrosManager.listaCarros[veiculoSelec]['litragem'];
+  venda['versao'] = CarrosManager.listaCarros[veiculoSelec]['versao'];
+  venda['valor'] = CarrosManager.listaCarros[veiculoSelec]['valor'];
   venda['nomeCompleto'] = ClientesManager.listaDeClientes[clienteSelec]['nomeCompleto'];
   venda['cpf'] = ClientesManager.listaDeClientes[clienteSelec]['cpf'];
   venda['dataNascimento'] = ClientesManager.listaDeClientes[clienteSelec]['dataNascimento'];
@@ -84,7 +84,7 @@ novaVenda() {
   venda['telefone'] = ClientesManager.listaDeClientes[clienteSelec]['telefone'];
 
   VendasManager.listaVendas.add(venda);
-  listaCarros.remove(veiculoSelec);
+  CarrosManager.listaCarros.remove(veiculoSelec);
   ClientesManager.listaDeClientes.remove(clienteSelec);
 
   for (int i = 0; i < VendasManager.listaVendas.length; i++) {
@@ -100,7 +100,7 @@ novaVenda() {
     print("Telefone: ${VendasManager.listaVendas[i]['telefone']}");
     print("--------------------------------------------------------");
 }
-
+print("Venda realizada.");
 print('Deseja realizar mais uma venda?\n1-Sim\n2-Não');
 int? choiceVenda = int.parse(stdin.readLineSync()!);
 

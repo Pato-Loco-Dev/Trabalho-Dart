@@ -1,7 +1,11 @@
 import 'dart:io';
 import 'Principal.dart';
 
-List<Map<String, dynamic>> listaCarros = [];
+class CarrosManager {
+  static List<Map<String, dynamic>> listaCarros = [];
+  static late bool StopInicializar;
+
+}
 
 void mainCarros() {
   limparTela();
@@ -70,23 +74,23 @@ void cadastrar() {
   print('Digite o valor: ');
   cadastro['valor'] = stdin.readLineSync();
 
-  listaCarros.add(cadastro);
+  CarrosManager.listaCarros.add(cadastro);
 }
 
 void atualizar() {
-  if (listaCarros.isEmpty) {
+  if (CarrosManager.listaCarros.isEmpty) {
     print("Não há carros cadastrados para atualizar.");
     return;
   }
 
   print("Digite o índice do carro que deseja atualizar:");
-  for (int i = 0; i < listaCarros.length; i++) {
-    print("$i: ${listaCarros[i]['modelo']}");
+  for (int i = 0; i < CarrosManager.listaCarros.length; i++) {
+    print("$i: ${CarrosManager.listaCarros[i]['modelo']}");
   }
 
   int indiceCarro = int.parse(stdin.readLineSync()!);
 
-  if (indiceCarro < 0 || indiceCarro >= listaCarros.length) {
+  if (indiceCarro < 0 || indiceCarro >= CarrosManager.listaCarros.length) {
     print("Índice inválido.");
     return;
   }
@@ -98,57 +102,57 @@ void atualizar() {
   switch (choiceAtualizar) {
         case 1:
           print("Digite o novo Modelo:");
-          listaCarros[indiceCarro]['modelo'] = stdin.readLineSync();
+          CarrosManager.listaCarros[indiceCarro]['modelo'] = stdin.readLineSync();
           break;
         case 2:
           print("Digite o novo Ano:");
-          listaCarros[indiceCarro]['ano'] = stdin.readLineSync();
+          CarrosManager.listaCarros[indiceCarro]['ano'] = stdin.readLineSync();
           break;
         case 3:
           print("Digite a nova Litragem:");
-          listaCarros[indiceCarro]['litragem'] = stdin.readLineSync();
+          CarrosManager.listaCarros[indiceCarro]['litragem'] = stdin.readLineSync();
           break;
         case 4:
           print("Digite a nova versão:");
-          listaCarros[indiceCarro]['versao'] = stdin.readLineSync();
+          CarrosManager.listaCarros[indiceCarro]['versao'] = stdin.readLineSync();
           break;
         case 5:
           print("Digite o novo Valor:");
-          listaCarros[indiceCarro]['valor'] = stdin.readLineSync();
+          CarrosManager.listaCarros[indiceCarro]['valor'] = stdin.readLineSync();
           break;
         case 6:
           print("Digite o novo Modelo:");
-          listaCarros[indiceCarro]['modelo'] = stdin.readLineSync();
+          CarrosManager.listaCarros[indiceCarro]['modelo'] = stdin.readLineSync();
 
           print("Digite o novo Ano:");
-          listaCarros[indiceCarro]['ano'] = stdin.readLineSync();
+          CarrosManager.listaCarros[indiceCarro]['ano'] = stdin.readLineSync();
           
           print("Digite a nova Litragem:");
-          listaCarros[indiceCarro]['litragem'] = stdin.readLineSync();
+          CarrosManager.listaCarros[indiceCarro]['litragem'] = stdin.readLineSync();
 
           print("Digite a nova versão:");
-          listaCarros[indiceCarro]['versao'] = stdin.readLineSync();
+          CarrosManager.listaCarros[indiceCarro]['versao'] = stdin.readLineSync();
 
           print("Digite o novo Valor:");
-          listaCarros[indiceCarro]['valor'] = stdin.readLineSync();
+          CarrosManager.listaCarros[indiceCarro]['valor'] = stdin.readLineSync();
       }
 
     print('Veiculo atualizado com sucesso!');
 }
 
 void listarTudo() {
-  if (listaCarros.isEmpty) {
+  if (CarrosManager.listaCarros.isEmpty) {
     print("Não há veiculos cadastrados.");
     return;
   }else {
     print("Veiculos cadastrados:");
-  for (int i = 0; i < listaCarros.length; i++) {
+  for (int i = 0; i < CarrosManager.listaCarros.length; i++) {
     print("Carro ${i}:");
-    print("Modelo: ${listaCarros[i]['modelo']}");
-    print("Ano: ${listaCarros[i]['ano']}");
-    print("Litragem: ${listaCarros[i]['litragem']}");
-    print("versao: ${listaCarros[i]['versao']}");
-    print("Valor: ${listaCarros[i]['valor']}");
+    print("Modelo: ${CarrosManager.listaCarros[i]['modelo']}");
+    print("Ano: ${CarrosManager.listaCarros[i]['ano']}");
+    print("Litragem: ${CarrosManager.listaCarros[i]['litragem']}");
+    print("versao: ${CarrosManager.listaCarros[i]['versao']}");
+    print("Valor: ${CarrosManager.listaCarros[i]['valor']}");
     print("--------------------");
 
     
@@ -157,23 +161,23 @@ void listarTudo() {
 }
 
 void deletar() {
-  if (listaCarros.isEmpty) {
+  if (CarrosManager.listaCarros.isEmpty) {
     print("Não há veiculos para deletar.");
     return;
   }
 
   print("Digite o índice do veiculo que deseja deletar:");
-  for (int i = 0; i < listaCarros.length; i++) {
-    print("$i: ${listaCarros[i]['modelo']}");
+  for (int i = 0; i < CarrosManager.listaCarros.length; i++) {
+    print("$i: ${CarrosManager.listaCarros[i]['modelo']}");
   }
 
   int indiceCarro= int.parse(stdin.readLineSync()!);
 
-  if (indiceCarro < 0 || indiceCarro >= listaCarros.length) {
+  if (indiceCarro < 0 || indiceCarro >= CarrosManager.listaCarros.length) {
     print("Índice inválido.");
     return;
   }
 
-  listaCarros.removeAt(indiceCarro);
+  CarrosManager.listaCarros.removeAt(indiceCarro);
   print("Veiculo removido com sucesso.");
 }

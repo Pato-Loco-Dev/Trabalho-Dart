@@ -3,7 +3,6 @@ import 'Principal.dart';
 
 class ClientesManager {
   static List<Map<String, dynamic>> listaDeClientes = [];
-  static late bool StopInicializar;
 
 }
 
@@ -11,12 +10,12 @@ void inicializarClientes() {
   limparTela();
   bool rodando = true;
   while (rodando) {
-    print("----------Aba Clientes----------");
+    print("----------Gerenciamento de Clientes----------");
     print("Digite o número da função que deseja realizar:");
-    print("1-Cadastrar um registro");
-    print("2-Atualizar um registro");
-    print("3-Listar todos os clientes");
-    print("4-Deletar um registro");
+    print("1-Cadastrar um cliente.");
+    print("2-Atualizar um registro de cliente.");
+    print("3-Listar todos os clientes.");
+    print("4-Deletar um registro de cliente.");
     print("5-Sair da aba de clientes.");
     int funcaoEscolhida = int.parse(stdin.readLineSync()!);
 
@@ -26,12 +25,12 @@ void inicializarClientes() {
       switch (funcaoEscolhida) {
         case 1:
           limparTela();
-          print("Você escolheu: Cadastrar um registro.");
+          print("Você escolheu: Cadastrar um cliente.");
           cadastrar();
           break;
         case 2:
           limparTela(); 
-          print("Você escolheu: Atualizar um registro.");         
+          print("Você escolheu: Atualizar um registro de cliente.");         
           atualizar();
           break;
         case 3:
@@ -41,7 +40,7 @@ void inicializarClientes() {
           break;
         case 4:
           limparTela();
-          print("Você escolheu: Deletar um registro.");
+          print("Você escolheu: Deletar um registro de cliente.");
           deletar();
           break;
         case 5:
