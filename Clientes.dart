@@ -1,7 +1,11 @@
 import 'dart:io';
 import 'Principal.dart';
 
-List<Map<String, dynamic>> listaDeClientes = [];
+class ClientesManager {
+  static List<Map<String, dynamic>> listaDeClientes = [];
+  static late bool StopInicializar;
+
+}
 
 void inicializarClientes() {
   limparTela();
@@ -68,81 +72,81 @@ void cadastrar() {
   print('Digite o telefone: ');
   cadastro['telefone'] = stdin.readLineSync();
 
-  listaDeClientes.add(cadastro);
+  ClientesManager.listaDeClientes.add(cadastro);
 }
 
 void atualizar() {
-  if (listaDeClientes.isEmpty) {
+  if (ClientesManager.listaDeClientes.isEmpty) {
     print("Não há clientes cadastrados para atualizar.");
     return;
   }
 
   print("Digite o índice do cliente que deseja atualizar:");
-  for (int i = 0; i < listaDeClientes.length; i++) {
-    print("$i: ${listaDeClientes[i]['nomeCompleto']}");
+  for (int i = 0; i < ClientesManager.listaDeClientes.length; i++) {
+    print("$i: ${ClientesManager.listaDeClientes[i]['nomeCompleto']}");
   }
 
   int indiceCliente = int.parse(stdin.readLineSync()!);
 
-  if (indiceCliente < 0 || indiceCliente >= listaDeClientes.length) {
+  if (indiceCliente < 0 || indiceCliente >= ClientesManager.listaDeClientes.length) {
     print("Índice inválido.");
     return;
   }
 
   print('Digite o novo nome completo: ');
-  listaDeClientes[indiceCliente]['nomeCompleto'] = stdin.readLineSync();
+  ClientesManager.listaDeClientes[indiceCliente]['nomeCompleto'] = stdin.readLineSync();
 
   print('Digite o novo CPF: ');
-  listaDeClientes[indiceCliente]['cpf'] = stdin.readLineSync();
+  ClientesManager.listaDeClientes[indiceCliente]['cpf'] = stdin.readLineSync();
 
   print('Digite a nova data de nascimento (DD/MM/AAAA): ');
-  listaDeClientes[indiceCliente]['dataNascimento'] = stdin.readLineSync();
+  ClientesManager.listaDeClientes[indiceCliente]['dataNascimento'] = stdin.readLineSync();
 
   print('Digite o novo endereço completo: ');
-  listaDeClientes[indiceCliente]['endereco'] = stdin.readLineSync();
+  ClientesManager.listaDeClientes[indiceCliente]['endereco'] = stdin.readLineSync();
 
   print('Digite o novo telefone: ');
-  listaDeClientes[indiceCliente]['telefone'] = stdin.readLineSync();
+  ClientesManager.listaDeClientes[indiceCliente]['telefone'] = stdin.readLineSync();
 
   print("Cliente atualizado com sucesso.");
 }
 
 void listarTodos() {
-  if (listaDeClientes.isEmpty) {
+  if (ClientesManager.listaDeClientes.isEmpty) {
     print("Não há clientes cadastrados.");
     return;
   }
 
   print("Clientes cadastrados:");
-  for (int i = 0; i < listaDeClientes.length; i++) {
+  for (int i = 0; i < ClientesManager.listaDeClientes.length; i++) {
     print("Cliente ${i + 1}:");
-    print("Nome Completo: ${listaDeClientes[i]['nomeCompleto']}");
-    print("CPF: ${listaDeClientes[i]['cpf']}");
-    print("Data de Nascimento: ${listaDeClientes[i]['dataNascimento']}");
-    print("Endereço: ${listaDeClientes[i]['endereco']}");
-    print("Telefone: ${listaDeClientes[i]['telefone']}");
+    print("Nome Completo: ${ClientesManager.listaDeClientes[i]['nomeCompleto']}");
+    print("CPF: ${ClientesManager.listaDeClientes[i]['cpf']}");
+    print("Data de Nascimento: ${ClientesManager.listaDeClientes[i]['dataNascimento']}");
+    print("Endereço: ${ClientesManager.listaDeClientes[i]['endereco']}");
+    print("Telefone: ${ClientesManager.listaDeClientes[i]['telefone']}");
     print("--------------------");
   }
 }
 
 void deletar() {
-  if (listaDeClientes.isEmpty) {
+  if (ClientesManager.listaDeClientes.isEmpty) {
     print("Não há clientes para deletar.");
     return;
   }
 
   print("Digite o índice do cliente que deseja deletar:");
-  for (int i = 0; i < listaDeClientes.length; i++) {
-    print("$i: ${listaDeClientes[i]['nomeCompleto']}");
+  for (int i = 0; i < ClientesManager.listaDeClientes.length; i++) {
+    print("$i: ${ClientesManager.listaDeClientes[i]['nomeCompleto']}");
   }
 
   int indiceCliente = int.parse(stdin.readLineSync()!);
 
-  if (indiceCliente < 0 || indiceCliente >= listaDeClientes.length) {
+  if (indiceCliente < 0 || indiceCliente >= ClientesManager.listaDeClientes.length) {
     print("Índice inválido.");
     return;
   }
 
-  listaDeClientes.removeAt(indiceCliente);
+  ClientesManager.listaDeClientes.removeAt(indiceCliente);
   print("Cliente removido com sucesso.");
 }

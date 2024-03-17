@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'Clientes.dart';
-import 'ClientesManager.dart';
 import 'Relatorios.dart'; 
 import 'Carros.dart';
 import 'Vendas.dart';

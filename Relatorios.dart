@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'Clientes.dart';
-import 'ClientesManager.dart'; 
 import 'Principal.dart';
 import 'Vendas.dart';
 
@@ -8,78 +7,73 @@ void main() {
   inicializarRelatorios();
 }
 
-Future<void> inicializarRelatorios() async {
-  limparTela();
-  print("ÁREA DE RELATÓRIOS, ESCOLHA O QUE VOCÊ DESEJA:");
-  print("1- Relatório de clientes cadastrados.");
-  print("2- Relatório de total de vendas.");
-  print("3- Sair");
+void inicializarRelatorios() {
 
-  int funcaoEscolhida = int.parse(stdin.readLineSync()!);
+
   bool rodando = true;
 
   while (rodando) {
+    limparTela();
+    print("ÁREA DE RELATÓRIOS, ESCOLHA O QUE VOCÊ DESEJA:");
+    print("1- Relatório de clientes cadastrados.");
+    print("2- Relatório de total de vendas.");
+    print("3- Sair");
+
+    int funcaoEscolhida = int.parse(stdin.readLineSync()!);
     if (funcaoEscolhida < 1 || funcaoEscolhida > 3) {
       print("********************Comando inválido, escolha um número entre 1 e 3!********************");
     } else {
       switch (funcaoEscolhida) {
         case 1:
-          limparTela();
-          print("Você escolheu: Relatório de clientes cadastrados.");
-          final filename = 'lista-clientes.txt';
-          var file = File(filename);
-
-          // Abre o arquivo para escrita
-          var sink = file.openWrite();
-
-          // Escreve cada cliente no arquivo
-          for (var cliente in listaDeClientes) { // Usar listaDeClientes diretamente
-            sink.writeln("Nome Completo: ${cliente['nomeCompleto']}");
-            sink.writeln("CPF: ${cliente['cpf']}");
-            sink.writeln("Data de Nascimento: ${cliente['dataNascimento']}");
-            sink.writeln("Endereço: ${cliente['endereco']}");
-            sink.writeln("Telefone: ${cliente['telefone']}");
-            sink.writeln("--------------------");
-          }
-
-          // Fecha o arquivo após escrever todos os clientes
-          
-          sink.close();
-          print("Relatório de clientes cadastrados salvo com sucesso.");
+          relatorioClientes();
           rodando = false;
-          ClientesManager.StopInicializar = false;          
-          
           break;
-
         case 2:
-          limparTela();
-          print("Você escolheu: Relatório de vendas.");
-          final filename = 'lista-vendas.txt';
-          var file = File(filename);
-
-          // Abre o arquivo para escrita
-          var sink = file.openWrite();
-
-          // Escreve cada cliente no arquivo
-          for (var venda in listaVendas) { // Usar listaDeClientes diretamente
-            sink.writeln("Nome Completo: ${venda['nomeCompleto']}");
-
-
-          // Fecha o arquivo após escrever todos os clientes
-          
-          sink.close();
-          print("Relatório de clientes cadastrados salvo com sucesso.");
-          rodando = false;
-          ClientesManager.StopInicializar = false;          
-          
+          relatorioVendas();
+          rodando=false;
           break;
-        /*case 3:
-          limparTela();
-          print("Saindo.");
+        case 3:
           rodando = false;
-          break;*/
+          break;
       }
     }
   }
 }
+
+void relatorioVendas() async{
+  limparTela();
+  print("Você escolheu: Relatório de vendas.");
+  try {
+    final file = File('lista-vendas.txt');
+    final sink = file.openWrite();
+
+    for (var venda in VendasManager.listaVendas) {
+    await file.writeAsString(venda.toString());
+    }
+
+    await sink.close();
+    print('Relatório de vendas gravado com sucesso.');
+  } catch (e) {
+    print('Erro ao gravar relatório de vendas: $e');
+  }
+
+}
+
+void relatorioClientes() async {
+  limparTela();
+  print("Você escolheu: Relatório de clientes cadastrados.");
+
+  try {
+    final file = File('lista-clientes.txt');
+    final sink = file.openWrite();
+
+    for (var cliente in ClientesManager.listaDeClientes) {
+    await file.writeAsString(cliente.toString());
+    }
+
+    await sink.close();
+    print('Relatório de clientes gravado com sucesso.');
+  } catch (e) {
+    print('Erro ao gravar relatório de clientes: $e');
+  }
 }

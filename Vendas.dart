@@ -2,8 +2,9 @@ import 'Carros.dart';
 import 'Clientes.dart';
 import 'dart:io';
 
-
-List<Map<String, dynamic>> listaVendas = [];
+class VendasManager{
+static List<Map<String, dynamic>> listaVendas = [];
+}
 
 mainVenda(){    
 
@@ -54,19 +55,19 @@ novaVenda() {
   }
   
   }
-  if (listaDeClientes.isEmpty) {
+  if (ClientesManager.listaDeClientes.isEmpty) {
     print("Desculpe, não há clientes cadastrados.");
     return;
   }
   int veiculoSelec = int.parse(stdin.readLineSync()!);
   print("Selecione o cliente:");
-  for (int i = 0; i < listaDeClientes.length; i++) {
+  for (int i = 0; i < ClientesManager.listaDeClientes.length; i++) {
     print("Cliente ${i}:");
-    print("Nome Completo: ${listaDeClientes[i]['nomeCompleto']}");
-    print("CPF: ${listaDeClientes[i]['cpf']}");
-    print("Data de Nascimento: ${listaDeClientes[i]['dataNascimento']}");
-    print("Endereço: ${listaDeClientes[i]['endereco']}");
-    print("Telefone: ${listaDeClientes[i]['telefone']}");
+    print("Nome Completo: ${ClientesManager.listaDeClientes[i]['nomeCompleto']}");
+    print("CPF: ${ClientesManager.listaDeClientes[i]['cpf']}");
+    print("Data de Nascimento: ${ClientesManager.listaDeClientes[i]['dataNascimento']}");
+    print("Endereço: ${ClientesManager.listaDeClientes[i]['endereco']}");
+    print("Telefone: ${ClientesManager.listaDeClientes[i]['telefone']}");
     print("--------------------");
   }
 
@@ -76,27 +77,27 @@ novaVenda() {
   venda['litragem'] = listaCarros[veiculoSelec]['litragem'];
   venda['versao'] = listaCarros[veiculoSelec]['versao'];
   venda['valor'] = listaCarros[veiculoSelec]['valor'];
-  venda['nomeCompleto'] = listaDeClientes[clienteSelec]['nomeCompleto'];
-  venda['cpf'] = listaDeClientes[clienteSelec]['cpf'];
-  venda['dataNascimento'] = listaDeClientes[clienteSelec]['dataNascimento'];
-  venda['endereco'] = listaDeClientes[clienteSelec]['endereco'];
-  venda['telefone'] = listaDeClientes[clienteSelec]['telefone'];
+  venda['nomeCompleto'] = ClientesManager.listaDeClientes[clienteSelec]['nomeCompleto'];
+  venda['cpf'] = ClientesManager.listaDeClientes[clienteSelec]['cpf'];
+  venda['dataNascimento'] = ClientesManager.listaDeClientes[clienteSelec]['dataNascimento'];
+  venda['endereco'] = ClientesManager.listaDeClientes[clienteSelec]['endereco'];
+  venda['telefone'] = ClientesManager.listaDeClientes[clienteSelec]['telefone'];
 
-  listaVendas.add(venda);
+  VendasManager.listaVendas.add(venda);
   listaCarros.remove(veiculoSelec);
-  listaDeClientes.remove(clienteSelec);
+  ClientesManager.listaDeClientes.remove(clienteSelec);
 
-  for (int i = 0; i < listaVendas.length; i++) {
+  for (int i = 0; i < VendasManager.listaVendas.length; i++) {
     print("--------------------Venda ${i + 1} --------------------");
-    print("Modelo: ${listaVendas[i]['modelo']}");
-    print("Ano: ${listaVendas[i]['ano']}");
-    print("Litragem: ${listaVendas[i]['litragem']}");
-    print("Versao: ${listaVendas[i]['versao']}");
-    print("Nome Completo: ${listaVendas[i]['nomeCompleto']}");
-    print("CPF: ${listaVendas[i]['cpf']}");
-    print("Data Nascimento: ${listaVendas[i]['dataNascimento']}");
-    print("Enderço: ${listaVendas[i]['endereco']}");
-    print("Telefone: ${listaVendas[i]['telefone']}");
+    print("Modelo: ${VendasManager.listaVendas[i]['modelo']}");
+    print("Ano: ${VendasManager.listaVendas[i]['ano']}");
+    print("Litragem: ${VendasManager.listaVendas[i]['litragem']}");
+    print("Versao: ${VendasManager.listaVendas[i]['versao']}");
+    print("Nome Completo: ${VendasManager.listaVendas[i]['nomeCompleto']}");
+    print("CPF: ${VendasManager.listaVendas[i]['cpf']}");
+    print("Data Nascimento: ${VendasManager.listaVendas[i]['dataNascimento']}");
+    print("Enderço: ${VendasManager.listaVendas[i]['endereco']}");
+    print("Telefone: ${VendasManager.listaVendas[i]['telefone']}");
     print("--------------------------------------------------------");
 }
 
