@@ -101,7 +101,7 @@ gravarArquivoVendas() {
         'Litragem:: $litragem \n'
         'Versão:: $versao \n'
         '****************************************\n'
-        'Total de clientes: $totalvendas \n'
+        'Total de vendas: $totalvendas \n'
         '****************************************\n';
 
     caminhoArquivo.writeAsStringSync(informacoes);
