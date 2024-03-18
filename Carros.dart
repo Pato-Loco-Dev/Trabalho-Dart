@@ -3,8 +3,6 @@ import 'Principal.dart';
 
 class CarrosManager {
   static List<Map<String, dynamic>> listaCarros = [];
-  static late bool StopInicializar;
-
 }
 
 void mainCarros() {
