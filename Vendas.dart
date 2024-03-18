@@ -84,8 +84,8 @@ novaVenda() {
   venda['telefone'] = ClientesManager.listaDeClientes[clienteSelec]['telefone'];
 
   VendasManager.listaVendas.add(venda);
-  CarrosManager.listaCarros.remove(veiculoSelec);
-  ClientesManager.listaDeClientes.remove(clienteSelec);
+  CarrosManager.listaCarros.removeAt(veiculoSelec);
+  
 
   for (int i = 0; i < VendasManager.listaVendas.length; i++) {
     print("--------------------Venda ${i + 1} --------------------");
@@ -106,7 +106,7 @@ int? choiceVenda = int.parse(stdin.readLineSync()!);
 
 if(choiceVenda == 1) {
   mainVenda();
-} else {
+} else{
   return;
 }
 

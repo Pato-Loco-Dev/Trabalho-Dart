@@ -1,1 +1,0 @@
-{modelo: Gol, ano: 2004, litragem: 4t, versao: 4x4, valor: 9000, nomeCompleto: Lais , cpf: 09505066996, dataNascimento: 28/07/2004, endereco: Pato branco, telefone: 46991107576}
